@@ -11,9 +11,11 @@
  *
  *  Output:
  *	person_list = [
+ *		person: Dominik Knoll is 32 years old.
  *		person: Klaus Kleber is 66 years old.
  *		person: Petra Schmitt is 35 years old.
  *	]
+ *	person: Klaus Kleber is 66 years old.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,7 +45,6 @@ int main(int argc, char **argv) {
 	unsigned int list_index = 1;
 	person_list_ptr = get_list_person(&list, list_index);
 	print_person(person_list_ptr);
-
 
 	return 0;
 }
