@@ -9,6 +9,12 @@
  *  person_t can be used like an object. The objects can be stored in an person_list_t object.
  *  Dynamic memory allocation is used for the most of the stuff.
  *
+ *  Output:
+ *	person_list = [
+ *		person: Dominik Knoll is 32 years old.
+ *		person: Klaus Kleber is 66 years old.
+ *		person: Petra Schmitt is 35 years old.
+ *	]
  */
 #include <stdio.h>
 #include <stdlib.h>
