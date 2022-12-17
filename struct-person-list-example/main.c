@@ -11,7 +11,6 @@
  *
  *  Output:
  *	person_list = [
- *		person: Dominik Knoll is 32 years old.
  *		person: Klaus Kleber is 66 years old.
  *		person: Petra Schmitt is 35 years old.
  *	]
@@ -24,11 +23,13 @@
 #include "person_list.h"
 
 int main(int argc, char **argv) {
+	/* create persons */
 	person_t dome, klaus, petra;
 	init_person(&dome, "Dominik", "Knoll", 32);
 	init_person(&klaus, "Klaus", "Kleber", 66);
 	init_person(&petra, "Petra", "Schmitt", 35);
 
+	/* create person list an add persons to list */
 	person_list_t list;
 	init_person_list(&list);
 	add_person_to_person_list(&list, &dome);
@@ -36,6 +37,13 @@ int main(int argc, char **argv) {
 	add_person_to_person_list(&list, &petra);
 
 	print_person_list(&list);
+
+	/* get a person from list */
+	person_t *person_list_ptr;
+	unsigned int list_index = 1;
+	person_list_ptr = get_list_person(&list, list_index);
+	print_person(person_list_ptr);
+
 
 	return 0;
 }

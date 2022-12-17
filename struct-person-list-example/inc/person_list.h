@@ -34,6 +34,7 @@ typedef struct {
 /* global prototypes */
 void init_person_list(person_list_t *self);
 void add_person_to_person_list(person_list_t *self, const person_t *new_person);
+person_t *get_list_person(person_list_t *self, unsigned int entry);
 void print_person_list(const person_list_t *self);
 void destroy_person_list(person_list_t *self);
 

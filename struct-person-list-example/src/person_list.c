@@ -35,6 +35,14 @@ void add_person_to_person_list(person_list_t *self, const person_t *new_person) 
 	self->entrys++;
 }
 
+person_t *get_list_person(person_list_t *self, unsigned int entry) {
+	if (entry >= self->entrys) {
+		printf("entry of index %d is empty.\n", entry);
+		return NULL;
+	}
+	return self->list[entry];
+}
+
 void print_person_list(const person_list_t *self) {
 	printf("person_list = [\n");
 	for (int i = 0; i < self->entrys; i++) {

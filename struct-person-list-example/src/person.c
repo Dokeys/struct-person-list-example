@@ -72,6 +72,10 @@ void destroy_person(person_t *self) {
 }
 
 void print_person(person_t *self) {
+	if (self == NULL) {
+		printf("print person with null pointer.");
+		return;
+	}
 	printf("person: %s %s is %u years old.\n", self->first_name, self->last_name, self->age);
 }
 
