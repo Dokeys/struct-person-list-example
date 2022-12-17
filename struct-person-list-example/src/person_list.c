@@ -14,6 +14,7 @@
 
 /* person list functions */
 void init_person_list(person_list_t *self) {
+	self->entrys = 0;
 	destroy_person_list(self);
 	self->list = malloc(0);
 }
@@ -44,6 +45,10 @@ person_t* get_list_person(person_list_t *self, unsigned int entry) {
 }
 
 void print_person_list(const person_list_t *self) {
+	if (self->list == NULL) {
+		printf("person list is not initialised.\n");
+		return;
+	}
 	printf("person_list = [\n");
 	for (int i = 0; i < self->entrys; i++) {
 		printf("\t");
@@ -53,6 +58,8 @@ void print_person_list(const person_list_t *self) {
 }
 
 void destroy_person_list(person_list_t *self) {
+	for(int i=0; i<self->entrys; i++)
+		destroy_person(self->list[i]);
 	free(self->list);
 	self->list = NULL;
 	self->entrys = 0;

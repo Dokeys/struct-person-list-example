@@ -46,5 +46,7 @@ int main(int argc, char **argv) {
 	person_list_ptr = get_list_person(&list, list_index);
 	print_person(person_list_ptr);
 
+	destroy_person_list(&list);
+
 	return 0;
 }
