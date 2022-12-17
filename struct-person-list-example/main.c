@@ -5,9 +5,9 @@
  *      Author: Dominik Knoll
  *
  *  Description:
- *  This is a simple example of the struct pattern in c.
+ *  This is a simple example of the opaque struct pattern in c .
  *  person_t can be used like an object. The objects can be stored in an person_list_t object.
- *  Dynamic memory allocation is used for the most of the stuff.
+ *  Dynamic memory allocation is used for most of the stuff.
  *
  *  Output:
  *	person_list = [
@@ -26,27 +26,29 @@
 
 int main(int argc, char **argv) {
 	/* create persons */
-	person_t dome, klaus, petra;
-	init_person(&dome, "Dominik", "Knoll", 32);
-	init_person(&klaus, "Klaus", "Kleber", 66);
-	init_person(&petra, "Petra", "Schmitt", 35);
+	person_t *dome = create_person("Dominik", "Knoll", 32);
+	person_t *klaus = create_person("Klaus", "Kleber", 66);
+	person_t *petra = create_person("Petra", "Schmitt", 35);
+
+	// petra->age = 16;  // is not possible because person_t is an opeque object.
+
+	print_person(dome);
 
 	/* create person list an add persons to list */
-	person_list_t list;
-	init_person_list(&list);
-	add_person_to_person_list(&list, &dome);
-	add_person_to_person_list(&list, &klaus);
-	add_person_to_person_list(&list, &petra);
+	person_list_t *list = create_person_list();
+	add_person_to_person_list(list, dome);
+	add_person_to_person_list(list, klaus);
+	add_person_to_person_list(list, petra);
 
-	print_person_list(&list);
+	print_person_list(list);
 
 	/* get a person from list */
 	person_t *person_list_ptr;
 	unsigned int list_index = 1;
-	person_list_ptr = get_list_person(&list, list_index);
+	person_list_ptr = get_list_person(list, list_index);
 	print_person(person_list_ptr);
 
-	destroy_person_list(&list);
+	destroy_person_list(list);
 
 	return 0;
 }

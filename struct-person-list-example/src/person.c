@@ -9,14 +9,24 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include <string.h>
 
+struct person_s{
+	char *first_name;
+	char *last_name;
+	unsigned int age;
+};
+
 /* person functions */
-void init_person(person_t *self, const char *first_name, const char *last_name, int age) {
-	destroy_person(self);
+person_t* create_person(const char *first_name, const char *last_name, int age) {
+	person_t *self = malloc(sizeof(person_t));
+	self->first_name = NULL;
+	self->last_name = NULL;
 	set_person_first_name(self, first_name);
 	set_person_last_name(self, last_name);
 	set_person_age(self, age);
+	return self;
 }
 
 /* person setters */
@@ -51,24 +61,32 @@ void set_person_age(person_t *self, unsigned int age) {
 }
 
 /* person getters */
-char* get_person_first_name(person_t *self) {
+char* get_person_first_name(const person_t *self) {
 	return self->first_name;
 }
 
-char* get_person_last_name(person_t *self) {
+char* get_person_last_name(const person_t *self) {
 	return self->last_name;
 }
 
-unsigned int get_person_age(person_t *self) {
+unsigned int get_person_age(const person_t *self) {
 	return self->age;
+}
+
+char* get_person_string(const person_t *self) {
+	static char buffer[1024];
+	sprintf(buffer, "person: first_name=%s, last_name%s, age=%d", self->first_name, self->last_name, self->age);
+	return buffer;
 }
 
 void destroy_person(person_t *self) {
 	free(self->first_name);
-	self->first_name = NULL;
 	free(self->last_name);
-	self->last_name = NULL;
-	self->age = 0;
+	free(self);
+}
+
+size_t get_sizeof_person_t(){
+	return sizeof(person_t);
 }
 
 void print_person(person_t *self) {

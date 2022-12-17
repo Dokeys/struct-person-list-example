@@ -9,14 +9,12 @@
  *  Dynamic memory allocation is used.
  *
  *  Example:
- *  person_t dome, klaus;
- *	init_person(&dome, "Dominik", "Knoll", 32);
- *	init_person(&klaus, "Klaus", "Kleber", 66);
+ *	person_t *dome = create_person("Dominik", "Knoll", 32);
+ *	person_t *klaus = create_person("Klaus", "Kleber", 66);
  *
- *	person_list_t list;
- *	init_person_list(&list);
- *	add_person_to_person_list(&list, &dome);
- *	add_person_to_person_list(&list, &klaus);
+ *	person_list_t *list = create_person_list();
+ *	add_person_to_person_list(list, dome);
+ *	add_person_to_person_list(list, klaus);
  *
  *	print_person_list(&list);
  *
@@ -26,13 +24,10 @@
 
 #include <stdlib.h>
 
-typedef struct {
-	person_t **list;
-	size_t entrys;
-} person_list_t;
+typedef struct person_list_s person_list_t;  /* Opaque object. The person_list struct is hidden and can only be used by person_list.c. */
 
 /* global prototypes */
-void init_person_list(person_list_t *self);
+person_list_t* create_person_list();
 void add_person_to_person_list(person_list_t *self, const person_t *new_person);
 person_t* get_list_person(person_list_t *self, unsigned int entry);
 void print_person_list(const person_list_t *self);
