@@ -10,6 +10,7 @@
  *  Dynamic memory allocation is used for most of the stuff.
  *
  *  Output:
+ *  person: Dominik Knoll is 32 years old.
  *	person_list = [
  *		person: Dominik Knoll is 32 years old.
  *		person: Klaus Kleber is 66 years old.
