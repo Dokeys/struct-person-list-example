@@ -17,12 +17,12 @@
  *	]
  *	person: Klaus Kleber is 66 years old.
  */
+#include "person.h"
+#include "person_list.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include "person.h"
-#include "person_list.h"
 
 int main(int argc, char **argv) {
 	/* create persons */
