@@ -76,9 +76,14 @@ unsigned int get_person_age(const person_t *self) {
 char* get_person_string(const person_t *self) {
 	static char *str;
 	int len;
+
 	free(str);
 	len = sprintf(NULL, "person: first_name=%s, last_name%s, age=%d", self->first_name, self->last_name, self->age);
 	str = malloc(len + 1);
+	if (str == NULL) {
+		printf("unable to allocate memory for the person string of %s.\n", self->first_name);
+		return NULL;
+	}
 	sprintf(str, "person: first_name=%s, last_name%s, age=%d", self->first_name, self->last_name, self->age);
 	return str;
 }
