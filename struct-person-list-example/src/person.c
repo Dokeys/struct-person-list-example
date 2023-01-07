@@ -32,9 +32,9 @@ person_t* create_person(const char *first_name, const char *last_name, int age) 
 /* person setters */
 void set_person_first_name(person_t *self, const char *first_name) {
 	if (self->first_name == NULL) // for init
-		self->first_name = malloc(sizeof(first_name));
+		self->first_name = malloc(sizeof(char)*strlen(first_name) + 1);
 	else
-		self->first_name = realloc(self->first_name, sizeof(first_name));
+		self->first_name = realloc(self->first_name, sizeof(char)*strlen(first_name) + 1);
 
 	if (self->first_name == NULL) {
 		printf("unable to allocate memory for first name of %s.\n", first_name);
@@ -45,9 +45,9 @@ void set_person_first_name(person_t *self, const char *first_name) {
 
 void set_person_last_name(person_t *self, const char *last_name) {
 	if (self->last_name == NULL)  // for init
-		self->last_name = malloc(sizeof(last_name));
+		self->last_name = malloc(sizeof(char)*sizeof(last_name) + 1);
 	else
-		self->last_name = realloc(self->last_name, sizeof(last_name));
+		self->last_name = realloc(self->last_name, sizeof(char)*sizeof(last_name) + 1);
 
 	if (self->last_name == NULL) {
 		printf("unable to allocate memory for last name of %s.\n", last_name);
