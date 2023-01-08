@@ -21,6 +21,10 @@ struct person_s {
 /* person functions */
 person_t* create_person(const char *first_name, const char *last_name, int age) {
 	person_t *self = malloc(sizeof(person_t));
+	if (self == NULL) {
+		printf("unable to allocate memory for person_t in cerate_person.\n");
+		return NULL;
+	}
 	self->first_name = NULL;
 	self->last_name = NULL;
 	set_person_first_name(self, first_name);
@@ -32,9 +36,9 @@ person_t* create_person(const char *first_name, const char *last_name, int age) 
 /* person setters */
 void set_person_first_name(person_t *self, const char *first_name) {
 	if (self->first_name == NULL) // for init
-		self->first_name = malloc(sizeof(char) * strlen(first_name) + 1);
+		self->first_name = malloc(strlen(first_name) + 1);
 	else
-		self->first_name = realloc(self->first_name, sizeof(char) * strlen(first_name) + 1);
+		self->first_name = realloc(self->first_name, strlen(first_name) + 1);
 
 	if (self->first_name == NULL) {
 		printf("unable to allocate memory for first name of %s.\n", first_name);
@@ -45,9 +49,9 @@ void set_person_first_name(person_t *self, const char *first_name) {
 
 void set_person_last_name(person_t *self, const char *last_name) {
 	if (self->last_name == NULL)  // for init
-		self->last_name = malloc(sizeof(char) * sizeof(last_name) + 1);
+		self->last_name = malloc(strlen(last_name) + 1);
 	else
-		self->last_name = realloc(self->last_name, sizeof(char) * sizeof(last_name) + 1);
+		self->last_name = realloc(self->last_name, strlen(last_name) + 1);
 
 	if (self->last_name == NULL) {
 		printf("unable to allocate memory for last name of %s.\n", last_name);
@@ -74,17 +78,17 @@ unsigned int get_person_age(const person_t *self) {
 }
 
 char* get_person_string(const person_t *self) {
-	static char *str;
+	static char *str = NULL;
 	int len;
 
 	free(str);
-	len = sprintf(NULL, "person: first_name=%s, last_name%s, age=%d", self->first_name, self->last_name, self->age);
+	len = sprintf(NULL, "person: first_name=%s, last_name=%s, age=%d", self->first_name, self->last_name, self->age);
 	str = malloc(len + 1);
 	if (str == NULL) {
 		printf("unable to allocate memory for the person string of %s.\n", self->first_name);
 		return NULL;
 	}
-	sprintf(str, "person: first_name=%s, last_name%s, age=%d", self->first_name, self->last_name, self->age);
+	sprintf(str, "person: first_name=%s, last_name=%s, age=%d", self->first_name, self->last_name, self->age);
 	return str;
 }
 
@@ -98,7 +102,7 @@ size_t get_sizeof_person_t() {
 	return sizeof(person_t);
 }
 
-void print_person(person_t *self) {
+void print_person(const person_t *self) {
 	if (self == NULL) {
 		printf("print person with null pointer.");
 		return;

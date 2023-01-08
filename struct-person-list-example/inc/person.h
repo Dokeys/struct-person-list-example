@@ -31,6 +31,6 @@ unsigned int get_person_age(const person_t *self);
 char* get_person_string(const person_t *self);
 void destroy_person(person_t *self);
 size_t get_sizeof_person_t();
-void print_person(person_t *self);
+void print_person(const person_t *self);
 
 #endif /* INC_PERSON_H_ */
