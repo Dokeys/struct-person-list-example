@@ -13,5 +13,5 @@ person_list = [
 		person: Klaus Kleber is 66 years old.
 		person: Petra Schmitt is 35 years old.
 	]
-	person: Klaus Kleber is 66 years old.
+person: Klaus Kleber is 66 years old.
 ```
