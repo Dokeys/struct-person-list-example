@@ -17,3 +17,4 @@ build/person_list.o: src/person_list.c
 # remove all unimportant files
 clean:
 	rm build/*
+	rm bin/program
